@@ -20,7 +20,8 @@
     }
   ],
   "dependencies": {
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "node-uuid": "^1.4.1"
   },
   "devDependencies": {
     "grunt": "^0.4.4",
