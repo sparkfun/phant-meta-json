@@ -1,12 +1,12 @@
-# phant-storage-json [![Build Status](https://secure.travis-ci.org/sparkfun/phant-storage-json.png?branch=master)](http://travis-ci.org/sparkfun/phant-storage-json)
+# phant-meta-json [![Build Status](https://secure.travis-ci.org/sparkfun/phant-meta-json.png?branch=master)](http://travis-ci.org/sparkfun/phant-meta-json)
 
-test data for phant metadata and streams
+phant metadata json storage
 
 ## Getting Started
-Install the module with: `npm install phant-storage-json`
+Install the module with: `npm install phant-meta-json`
 
 ```javascript
-var phant-storage-json = require('phant-storage-json');
+var phant-meta-json = require('phant-meta-json');
 ```
 
 ## Documentation
