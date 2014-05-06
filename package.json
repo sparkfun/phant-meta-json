@@ -14,11 +14,7 @@
     "type": "git",
     "url": "git://github.com/sparkfun/phant-meta-json"
   },
-  "licenses": [
-    {
-      "type": "GPL v3"
-    }
-  ],
+  "license": "GPL-3.0",
   "dependencies": {
     "node-uuid": "^1.4.1",
     "lodash": "^2.4.1",

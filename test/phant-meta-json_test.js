@@ -1,6 +1,9 @@
 'use strict';
 
 var PhantMeta = require('../lib/phant-meta-json.js'),
+    fs = require('fs'),
+    path = require('path'),
+    _ = require('lodash'),
     meta = PhantMeta();
 
 exports.phantMeta = {
@@ -15,12 +18,12 @@ exports.phantMeta = {
       hidden: false
     };
 
-    meta.create(data, function(err, stream) {
+    meta.create(_.clone(data), function(err, stream) {
 
       this.stream = stream;
 
       // create another
-      meta.create(data, function(err, stream) {
+      meta.create(_.clone(data), function(err, stream) {
         done();
       });
 
@@ -31,6 +34,7 @@ exports.phantMeta = {
   tearDown: function(done) {
 
     meta.remove(this.stream.id, function(err, status) {
+      fs.unlinkSync(path.join(meta.directory, 'streams.json'));
       done();
     }.bind(this));
 
