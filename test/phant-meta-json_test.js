@@ -91,6 +91,20 @@ exports.phantMeta = {
 
   },
 
+  'all': function(test) {
+
+    test.expect(1);
+
+    meta.all(function(err, streams) {
+
+      test.ok(streams.length > 0, 'should return some items');
+
+      test.done();
+
+    });
+
+  },
+
   'list': function(test) {
 
     test.expect(2);
