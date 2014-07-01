@@ -22,7 +22,11 @@ exports.phantMeta = {
 
       this.stream = stream;
 
-      meta.create(_.clone(data), function(err, stream) {
+      data = _.clone(data);
+      delete data.id;
+      data.title = 'unit test 2';
+
+      meta.create(data, function(err, stream) {
         done();
       });
 
@@ -33,7 +37,9 @@ exports.phantMeta = {
   tearDown: function(done) {
 
     meta.delete(this.stream.id, function(err, status) {
-      fs.unlinkSync(path.join(meta.directory, 'streams.json'));
+      try {
+        fs.unlinkSync(path.join(meta.directory, 'streams.json'));
+      } catch(e) {}
       done();
     }.bind(this));
 
