@@ -22,7 +22,6 @@ exports.phantMeta = {
 
       this.stream = stream;
 
-      // create another
       meta.create(_.clone(data), function(err, stream) {
         done();
       });
@@ -33,7 +32,7 @@ exports.phantMeta = {
 
   tearDown: function(done) {
 
-    meta.remove(this.stream.id, function(err, status) {
+    meta.delete(this.stream.id, function(err, status) {
       fs.unlinkSync(path.join(meta.directory, 'streams.json'));
       done();
     }.bind(this));
@@ -74,37 +73,6 @@ exports.phantMeta = {
 
   },
 
-  'flag': function(test) {
-
-    test.expect(2);
-
-    test.equal(this.stream.flagged, false, 'should not be flagged at creation');
-
-    meta.flag(this.stream.id, function(err, status) {
-
-      meta.get(this.stream.id, function(err, stream) {
-        test.ok(stream.flagged, 'should now be flagged');
-        test.done();
-      }.bind(this));
-
-    }.bind(this));
-
-  },
-
-  'all': function(test) {
-
-    test.expect(1);
-
-    meta.all(function(err, streams) {
-
-      test.ok(streams.length > 0, 'should return some items');
-
-      test.done();
-
-    });
-
-  },
-
   'list': function(test) {
 
     test.expect(2);
@@ -118,19 +86,33 @@ exports.phantMeta = {
       meta.list(function(err, streams) {
         test.equal(streams.length, limit -1, 'should limit the list');
         test.done();
-      }, 0, limit - 1);
+      }, null, 0, limit - 1);
 
     });
 
   },
 
-  'remove': function(test) {
+  'each': function(test) {
 
     test.expect(2);
 
-    meta.remove(this.stream.id, function(err, status) {
+    meta.each(function(err, stream) {
 
-      test.ok(status, 'should be ok');
+      test.ok(!err, 'should not err');
+      test.equal(stream.title, 'unit test', 'should return correct stream');
+      test.done();
+
+    }, { title: 'unit test' });
+
+  },
+
+  'delete': function(test) {
+
+    test.expect(2);
+
+    meta.delete(this.stream.id, function(err) {
+
+      test.ok(!err, 'should not err');
 
       meta.get(this.stream.id, function(err, stream) {
 
