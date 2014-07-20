@@ -15,6 +15,9 @@
     "url": "git://github.com/sparkfun/phant-meta-json"
   },
   "license": "GPL-3.0",
+  "engines": {
+    "node": "^0.10.29"
+  },
   "dependencies": {
     "node-uuid": "^1.4.1",
     "lodash": "^2.4.1",
@@ -31,5 +34,17 @@
   },
   "scripts": {
     "test": "grunt"
+  },
+  "phantConfig": {
+    "name": "JSON",
+    "options": [
+      {
+        "label": "Storage Directory Path",
+        "name": "directory",
+        "default": "phant_streams",
+        "type": "text",
+        "description": "The directory to store the JSON file in."
+      }
+    ]
   }
 }
